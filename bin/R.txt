@@ -97,7 +97,7 @@ int drawable ic_plusone_standard_off_client 0x7f02001d
 int drawable ic_plusone_tall_off_client 0x7f02001e
 int drawable powered_by_google_dark 0x7f02001f
 int drawable powered_by_google_light 0x7f020020
-int id action_settings 0x7f0b001c
+int id action_settings 0x7f0b001d
 int id adjust_height 0x7f0b0000
 int id adjust_width 0x7f0b0001
 int id book_now 0x7f0b0010
@@ -122,6 +122,7 @@ int id satellite 0x7f0b0005
 int id selectionDetails 0x7f0b000d
 int id startDate 0x7f0b0019
 int id strict_sandbox 0x7f0b000b
+int id submit 0x7f0b001c
 int id terrain 0x7f0b0006
 int id textView1 0x7f0b0018
 int id textView2 0x7f0b001a

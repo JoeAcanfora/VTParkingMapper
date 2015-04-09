@@ -464,7 +464,7 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020020;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b001c;
+        public static final int action_settings=0x7f0b001d;
         public static final int adjust_height=0x7f0b0000;
         public static final int adjust_width=0x7f0b0001;
         public static final int book_now=0x7f0b0010;
@@ -489,6 +489,7 @@ containing a value of this type.
         public static final int selectionDetails=0x7f0b000d;
         public static final int startDate=0x7f0b0019;
         public static final int strict_sandbox=0x7f0b000b;
+        public static final int submit=0x7f0b001c;
         public static final int terrain=0x7f0b0006;
         public static final int textView1=0x7f0b0018;
         public static final int textView2=0x7f0b001a;

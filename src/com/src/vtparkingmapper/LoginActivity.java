@@ -1,17 +1,25 @@
 package com.src.vtparkingmapper;
 
+import java.util.Date;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
     
     private EditText startDate;
     private EditText endDate;
-    private Spinner Credential;
+    private Spinner credential;
+    private Button submit;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +28,36 @@ public class LoginActivity extends Activity {
         
         startDate = (EditText) findViewById(R.id.startDate);
         endDate = (EditText) findViewById(R.id.endDate);
-        Credential = (Spinner) findViewById(R.id.pass);
+        credential = (Spinner) findViewById(R.id.pass);
+        submit = (Button) findViewById(R.id.submit);
+        submit.setOnClickListener(new OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                setCredentials();   
+            }          
+        });
+    }
+    
+    /**
+     * Sets the credential variable in the ApplicationSingleton Class.
+     */
+    private void setCredentials() {
+        if (startDate.getText().toString() == "" 
+                || endDate.getText().toString() == "" 
+                || credential.getSelectedItem().toString() == "") {
+            Toast toasty = new Toast(this);
+            toasty.setText("Please fill in all the forms");
+            toasty.show();
+            return;
+        }
+        Date s = new Date(startDate.getText().toString());
+        Date e = new Date(endDate.getText().toString());
+        String p = credential.getSelectedItem().toString();
+        
+        Credential pass = new Credential(s, e, p);
+        ((ApplicationSingleton)(this.getApplication())).setPass(pass);
+        Intent toMap = new Intent();
     }
 
     @Override
