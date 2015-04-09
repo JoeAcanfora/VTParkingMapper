@@ -6,7 +6,7 @@ public class Credential {
     
     private Date start;
     private Date end;
-    private enum Pass {
+    public enum Pass {
         RESIDENT,
         COMMUTER,
         GRADUATE,
@@ -14,7 +14,8 @@ public class Credential {
         BBW,
         VISITOR,
         CARPOOLCG,
-        CARPOOLFS
+        CARPOOLFS,
+        METERED
     };
     private Pass cred;
     
