@@ -464,7 +464,7 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020020;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b001d;
+        public static final int action_settings=0x7f0b001e;
         public static final int adjust_height=0x7f0b0000;
         public static final int adjust_width=0x7f0b0001;
         public static final int book_now=0x7f0b0010;
@@ -478,6 +478,7 @@ containing a value of this type.
         public static final int holo_dark=0x7f0b0007;
         public static final int holo_light=0x7f0b0008;
         public static final int hybrid=0x7f0b0003;
+        public static final int map=0x7f0b001d;
         public static final int match_parent=0x7f0b000e;
         public static final int monochrome=0x7f0b0016;
         public static final int none=0x7f0b0002;
@@ -500,9 +501,11 @@ containing a value of this type.
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
+        public static final int activity_map=0x7f030001;
     }
     public static final class menu {
         public static final int login=0x7f0a0000;
+        public static final int map_acitivity=0x7f0a0001;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f040000;
@@ -616,6 +619,7 @@ containing a value of this type.
         public static final int hello_world=0x7f060024;
         public static final int store_picture_message=0x7f060001;
         public static final int store_picture_title=0x7f060000;
+        public static final int title_activity_map_acitivity=0x7f060026;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

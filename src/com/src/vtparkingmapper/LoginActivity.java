@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,6 +30,16 @@ public class LoginActivity extends Activity {
         startDate = (EditText) findViewById(R.id.startDate);
         endDate = (EditText) findViewById(R.id.endDate);
         credential = (Spinner) findViewById(R.id.pass);
+        
+        startDate.setText("08/26/2014");
+        endDate.setText("08/26/2015");
+        
+        String list[] = {"Resident", "Commuter", "Graduate", "Facility/Staff", "Bike Bus and Walk", "Visitor",
+                "Carpool C/G", "Carpool F/S"};
+        ArrayAdapter<String> passAdapt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+        
+        credential.setAdapter(passAdapt);
+        
         submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new OnClickListener(){
 
@@ -57,7 +68,8 @@ public class LoginActivity extends Activity {
         
         Credential pass = new Credential(s, e, p);
         ((ApplicationSingleton)(this.getApplication())).setPass(pass);
-        Intent toMap = new Intent();
+        Intent toMap = new Intent(this, MapAcitivity.class);
+        startActivity(toMap);
     }
 
     @Override
