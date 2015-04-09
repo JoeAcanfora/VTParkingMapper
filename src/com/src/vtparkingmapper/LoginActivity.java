@@ -4,13 +4,23 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 public class LoginActivity extends Activity {
-
+    
+    private EditText startDate;
+    private EditText endDate;
+    private Spinner Credential;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        
+        startDate = (EditText) findViewById(R.id.startDate);
+        endDate = (EditText) findViewById(R.id.endDate);
+        Credential = (Spinner) findViewById(R.id.pass);
     }
 
     @Override
