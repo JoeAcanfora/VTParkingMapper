@@ -15,7 +15,8 @@ public class Credential {
         VISITOR,
         CARPOOLCG,
         CARPOOLFS,
-        METERED
+        METERED,
+        SERVICE
     };
     private Pass cred;
     
