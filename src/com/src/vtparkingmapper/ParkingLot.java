@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import android.text.format.Time;
-
 import com.google.android.gms.maps.model.LatLng;
 
 public class ParkingLot {
@@ -18,7 +16,6 @@ public class ParkingLot {
     
     public ParkingLot(List<LatLng> pts, Credential.Pass cred, int sTime, int eTime) {
         
-        
         startHour24 = sTime;
         endHour24 = eTime;
         this.cred = cred;
@@ -30,15 +27,17 @@ public class ParkingLot {
      * @param p
      * @return
      */
-    public Boolean isAvailable(Credential.Pass p) {
-        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("est"));
+    public boolean isAvailable(Credential p) {
+        Calendar c = Calendar.getInstance(TimeZone.getDefault());
         int currHour = c.get(Calendar.HOUR_OF_DAY);
-        
-        switch (p) {
-            //TODO
+        System.out.println("current hour:" + currHour);
+        if (p.getCred() == cred || (currHour < startHour24 || currHour > endHour24 )) {
+            return true;
         }
         return false;
-        
     }
     
+    public List<LatLng> getPoints() {
+        return points;
+    }
 }
