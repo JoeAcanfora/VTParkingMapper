@@ -2,8 +2,13 @@ package com.src.vtparkingmapper;
 
 import java.util.Date;
 
+import com.src.model.Credential;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,11 +26,27 @@ public class LoginActivity extends Activity {
     private EditText endDate;
     private Spinner credential;
     private Button submit;
+    private SharedPreferences saver;
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle saverInstanceState) {
+        super.onCreate(saverInstanceState);
         setContentView(R.layout.activity_login);
+        saver = this.getSharedPreferences(((ApplicationSingleton)getApplication()).sharedPrefName, 
+               Context.MODE_PRIVATE);
+        
+        Bundle bundle = getIntent().getExtras();
+        
+        if (bundle == null) {  
+            if (saver.contains("pass") && saver.contains("startDate") && saver.contains("endDate")) {
+                
+                setCredentials(saver.getString("pass", ""), saver.getString("startDate", ""),
+                        saver.getString("endDate", ""));
+            }
+        }
+        
+        
+        
         
         startDate = (EditText) findViewById(R.id.startDate);
         endDate = (EditText) findViewById(R.id.endDate);
@@ -45,7 +66,8 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                setCredentials();   
+                setCredentials(credential.getSelectedItem().toString(), startDate.getText().toString(),
+                        endDate.getText().toString());   
             }          
         });
     }
@@ -53,18 +75,24 @@ public class LoginActivity extends Activity {
     /**
      * Sets the credential variable in the ApplicationSingleton Class.
      */
-    private void setCredentials() {
-        if (startDate.getText().toString() == "" 
-                || endDate.getText().toString() == "" 
-                || credential.getSelectedItem().toString() == "") {
+    private void setCredentials(String credential, String startDate, String endDate) {
+        if (startDate== "" 
+                || endDate == "" 
+                || credential == "") {
             Toast toasty = new Toast(this);
             toasty.setText("Please fill in all the forms");
             toasty.show();
             return;
         }
-        Date s = new Date(startDate.getText().toString());
-        Date e = new Date(endDate.getText().toString());
-        String p = credential.getSelectedItem().toString();
+        Editor editor = saver.edit();
+        editor.putString("pass", credential);
+        editor.putString("startDate", startDate);
+        editor.putString("endDate", endDate);
+        editor.commit();
+        
+        Date s = new Date(startDate);
+        Date e = new Date(endDate);
+        String p = credential;//credential.getSelectedItem().toString();
         
         Credential pass = new Credential(s, e, p);
         ((ApplicationSingleton)(this.getApplication())).setPass(pass);

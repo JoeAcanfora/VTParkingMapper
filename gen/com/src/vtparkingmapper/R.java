@@ -471,7 +471,9 @@ containing a value of this type.
         public static final int buyButton=0x7f0b000c;
         public static final int buy_now=0x7f0b0011;
         public static final int buy_with_google=0x7f0b0012;
+        public static final int change_credential=0x7f0b001f;
         public static final int classic=0x7f0b0014;
+        public static final int compare_passes=0x7f0b0020;
         public static final int donate_with_google=0x7f0b0013;
         public static final int endDate=0x7f0b001b;
         public static final int grayscale=0x7f0b0015;

@@ -104,7 +104,9 @@ int id book_now 0x7f0b0010
 int id buyButton 0x7f0b000c
 int id buy_now 0x7f0b0011
 int id buy_with_google 0x7f0b0012
+int id change_credential 0x7f0b001f
 int id classic 0x7f0b0014
+int id compare_passes 0x7f0b0020
 int id donate_with_google 0x7f0b0013
 int id endDate 0x7f0b001b
 int id grayscale 0x7f0b0015
