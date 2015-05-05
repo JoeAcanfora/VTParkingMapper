@@ -12,11 +12,14 @@ import com.src.model.ParkingLot;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MapAcitivity extends Activity {
+public class MapAcitivity extends Activity implements SensorEventListener{
 
     static final LatLng bburg = new LatLng(37.2300, -80.4178);
     private GoogleMap map;
@@ -70,9 +73,6 @@ public class MapAcitivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.change_credential) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -81,10 +81,50 @@ public class MapAcitivity extends Activity {
             return true;
         }
         if (id == R.id.compare_passes){
-            
+            Intent intent = new Intent(this, PassCompareActivity.class);
+            startActivity(intent);
             return true;
         }
         System.out.println("Settings pressed");
         return super.onOptionsItemSelected(item);
+    }
+    
+    // ----------shake controls ------------------
+    private long lastUpdate = 0;
+    private float last_x, last_y, last_z;
+    private static final int SHAKE_THRESHOLD = 2000;
+    
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        Sensor mySensor = sensorEvent.sensor;
+        
+        if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            float x = sensorEvent.values[0];
+            float y = sensorEvent.values[1];
+            float z = sensorEvent.values[2];
+     
+            long curTime = System.currentTimeMillis();
+     
+            if ((curTime - lastUpdate) > 100) {
+                long diffTime = (curTime - lastUpdate);
+                lastUpdate = curTime;
+     
+                float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
+     
+                if (speed > SHAKE_THRESHOLD) {
+                    System.out.println("SHAKE SHAKE");
+                }
+     
+                last_x = x;
+                last_y = y;
+                last_z = z;
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // TODO Auto-generated method stub
+        
     }
 }

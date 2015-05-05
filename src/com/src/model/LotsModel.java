@@ -32,6 +32,7 @@ public class LotsModel {
         gHL.add(new LatLng(37.231635364108676, -80.4257744550705));
         gHL.add(new LatLng(37.23116553856154, -80.42518705129623));
         gHL.add(new LatLng(37.23228243722858, -80.42386338114738));
+        gHL.add(new LatLng(37.232594, -80.424441));
         ParkingLot goodwinHallLot = new ParkingLot(gHL, Credential.Pass.COMMUTER, 8, 5 + 12,
                 "Goodwin Hall Lot", "");
         lots.add(goodwinHallLot);
@@ -44,19 +45,28 @@ public class LotsModel {
                 "Lower Stanger Lot", "Surge Lot");
         lots.add(surgeLot);
         List<LatLng> hanh = new ArrayList<LatLng>();
-        hanh.add(new LatLng(37.227791250892956, -80.42647317051888));
-        hanh.add(new LatLng(37.227156953376785, -80.4259816557169));
-        hanh.add(new LatLng(37.22512801977121, -80.424380376935));
-        hanh.add(new LatLng(37.22577568266661, -80.42465765029192));
+        hanh.add(new LatLng(37.2277995, -80.426470));
+        hanh.add(new LatLng(37.227180, -80.425977));
+        hanh.add(new LatLng(37.227466, -80.425655));
+        hanh.add(new LatLng(37.227974, -80.426208));
         ParkingLot hanhLot = new ParkingLot(hanh, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
                 "Hanh Lot", "");
         lots.add(hanhLot);
+        List<LatLng> engel = new ArrayList<LatLng>();
+        engel.add(new LatLng(37.225594, -80.425121));
+        engel.add(new LatLng(37.224902, -80.424815));
+        engel.add(new LatLng(37.225090, -80.424359));
+        engel.add(new LatLng(37.225756, -80.424643));
+        ParkingLot engelLot = new ParkingLot(engel, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+                "Engel Lot", "");
+        lots.add(engelLot);
         List<LatLng> slusher = new ArrayList<LatLng>();
         slusher.add(new LatLng(37.22558079705477, -80.42303994297981));
         slusher.add(new LatLng(37.22511413740591, -80.42302586138248));
         slusher.add(new LatLng(37.224821539265314, -80.42282737791538));
+        slusher.add(new LatLng(37.224942, -80.422412));
         slusher.add(new LatLng(37.225204372734815, -80.42261850088835));
-        slusher.add(new LatLng( 37.22558506852563, -80.42263258248568));
+        slusher.add(new LatLng(37.22558506852563, -80.42263258248568));
         ParkingLot slusherLot = new ParkingLot(slusher, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
                 "AG Quad Lot", "Slusher Lot");
         lots.add(slusherLot);
@@ -329,11 +339,11 @@ public class LotsModel {
         oak.add(new LatLng(37.223746177952115, -80.42294472455978));
         oak.add(new LatLng(37.22357958634724, -80.42355626821518));
         oak.add(new LatLng(37.22326776004651, -80.4234328866005));
-        ParkingLot oakLaneLot = new ParkingLot(oak, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot oakLaneLot = new ParkingLot(oak, Credential.Pass.COMMUTER, 8, 5 + 12,
                 "Oak Lane Lot", "Frat Boy Lot");
         lots.add(oakLaneLot);
 
-List<LatLng> squires = new ArrayList<LatLng>();
+        List<LatLng> squires = new ArrayList<LatLng>();
         squires.add(new LatLng(37.22918369676129, -80.41748374700546));
         squires.add(new LatLng(37.22862415872037, -80.41695803403854));
         squires.add(new LatLng(37.22915379788701, -80.41613727807999));
@@ -383,12 +393,17 @@ List<LatLng> bdubs = new ArrayList<LatLng>();
         sharkeys.add(new LatLng(37.23111214910961, -80.41499868035316));
         sharkeys.add(new LatLng(37.23059533726048, -80.41440859436989));
         sharkeys.add(new LatLng(37.231052352878535, -80.41375145316124));
-        ParkingLot sharkeysLot = new ParkingLot(sharkeys, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
-                "Sharkeys Lot", "");
+        ParkingLot sharkeysLot = new ParkingLot(sharkeys, Credential.Pass.METERED, 8, 5 + 12,
+                "Progress Street Lot", "Sharkeys Lot");
         lots.add(sharkeysLot);
     }
     
     public List<ParkingLot> getLots() {
         return lots;
+    }
+    
+    public ParkingLot closestLot(LatLng currLoc) {
+        
+        
     }
 }
