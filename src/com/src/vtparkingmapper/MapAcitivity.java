@@ -75,7 +75,7 @@ public class MapAcitivity extends FragmentActivity implements ShakeDialog.Notice
                 MarkerOptions opts = new MarkerOptions();
                 opts.position(lot.getCenter());
                 opts.title(lot.getOfficialName());
-                opts.snippet(lot.getSlangName());
+                opts.snippet(lot.getSlangName() + " METERED");
                 Marker m = map.addMarker(opts);
                 markers.add(m);
             }
