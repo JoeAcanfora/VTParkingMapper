@@ -1,34 +1,50 @@
 package com.src.vtparkingmapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.MapFragment;
+import com.src.model.GPSTracker;
 import com.src.model.LotsModel;
 import com.src.model.ParkingLot;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MapAcitivity extends Activity implements SensorEventListener{
+public class MapAcitivity extends FragmentActivity implements ShakeDialog.NoticeDialogListener, SensorEventListener{
 
     static final LatLng bburg = new LatLng(37.2300, -80.4178);
     private GoogleMap map;
     private LotsModel lots;
+    private Boolean popupOpen;
+    private SensorManager senSensorManager;
+    private Sensor senAccelerometer;
+    private GPSTracker tracker;
+    private List<Marker> markers;
        
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         
         //Move the camera instantly to bburg with a zoom of 15.
@@ -36,7 +52,14 @@ public class MapAcitivity extends Activity implements SensorEventListener{
         
         // Zoom in, animating the camera.
         map.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null); 
+        markers = new ArrayList<Marker>();       
+        popupOpen = false;
+        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
+        tracker = new GPSTracker(this);
         drawLots();
+        
     }
     
     private void drawLots() {
@@ -46,7 +69,17 @@ public class MapAcitivity extends Activity implements SensorEventListener{
             for (LatLng ll : lot.getPoints()) {
                 p.add(ll);
             }
-            if (lot.isAvailable((((ApplicationSingleton) getApplication()).getPass()))) {
+            if (lot.isMetered()) {
+                p.strokeColor(Color.YELLOW);
+                p.fillColor(Color.YELLOW);
+                MarkerOptions opts = new MarkerOptions();
+                opts.position(lot.getCenter());
+                opts.title(lot.getOfficialName());
+                opts.snippet(lot.getSlangName());
+                Marker m = map.addMarker(opts);
+                markers.add(m);
+            }
+            else if (lot.isAvailable((((ApplicationSingleton) getApplication()).getPass()))) {
                 p.strokeColor(Color.GREEN);
                 p.fillColor(Color.GREEN);
                 
@@ -54,7 +87,8 @@ public class MapAcitivity extends Activity implements SensorEventListener{
                 opts.position(lot.getCenter());
                 opts.title(lot.getOfficialName());
                 opts.snippet(lot.getSlangName());
-                map.addMarker(opts);
+                Marker m = map.addMarker(opts);
+                markers.add(m);
             } else {
                 p.strokeColor(Color.RED);
                 p.fillColor(Color.RED);
@@ -111,8 +145,11 @@ public class MapAcitivity extends Activity implements SensorEventListener{
      
                 float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
      
-                if (speed > SHAKE_THRESHOLD) {
+                if (speed > SHAKE_THRESHOLD && !popupOpen) {
                     System.out.println("SHAKE SHAKE");
+                    ShakeDialog popup = new ShakeDialog();
+                    popupOpen = true;
+                    popup.show(this.getSupportFragmentManager(), "point picker");
                 }
      
                 last_x = x;
@@ -124,7 +161,25 @@ public class MapAcitivity extends Activity implements SensorEventListener{
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // TODO Auto-generated method stub
+        //Do nothing
         
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Location location = tracker.getLocation();
+        ParkingLot closest = lots.closestLot(new LatLng(location.getLatitude(), 
+                location.getLongitude()));
+        for (Marker m : markers) {
+            if (m.getTitle().toString().equals(closest.getOfficialName())) {
+                m.showInfoWindow();
+            }
+        }
+        popupOpen = false;
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        popupOpen = false;      
     }
 }

@@ -17,7 +17,7 @@ public class LotsModel {
         wCD.add(new LatLng(37.23170370212619, -80.42803555727005));
         wCD.add(new LatLng(37.23084947245539, -80.42696535587311));
         wCD.add(new LatLng(37.229918351090596, -80.42818039655685));
-        ParkingLot westCampusDrive = new ParkingLot(wCD, Credential.Pass.CARPOOLFS, 8, 5 + 12, 
+        ParkingLot westCampusDrive = new ParkingLot(wCD, Credential.Pass.COMMUTER, 8, 5 + 12, 
                 "West Campus Drive", "Commuter Lot");
         lots.add(westCampusDrive);
         List<LatLng> bG = new ArrayList<LatLng>();
@@ -33,7 +33,7 @@ public class LotsModel {
         gHL.add(new LatLng(37.23116553856154, -80.42518705129623));
         gHL.add(new LatLng(37.23228243722858, -80.42386338114738));
         gHL.add(new LatLng(37.232594, -80.424441));
-        ParkingLot goodwinHallLot = new ParkingLot(gHL, Credential.Pass.COMMUTER, 8, 5 + 12,
+        ParkingLot goodwinHallLot = new ParkingLot(gHL, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
                 "Goodwin Hall Lot", "");
         lots.add(goodwinHallLot);
         List<LatLng> surge = new ArrayList<LatLng>();
@@ -125,7 +125,7 @@ public class LotsModel {
         bL5.add(new LatLng(37.221815401386, -80.42484909296036));
         bL5.add(new LatLng(37.22211869035774, -80.42389959096909));
         bL5.add(new LatLng(37.22254158421212, -80.42410343885422));
-        ParkingLot bioishLot5 = new ParkingLot(bL5, Credential.Pass.RESIDENT, 8, 5 + 12,
+        ParkingLot bioishLot5 = new ParkingLot(bL5, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
                 "Wallace Lot", "");
         lots.add(bioishLot5);
         List<LatLng> cage = new ArrayList<LatLng>();
@@ -148,19 +148,10 @@ public class LotsModel {
         mccomas.add(new LatLng(37.22079019019925, -80.42148023843765));
         mccomas.add(new LatLng(37.22091834235965, -80.41969388723373));
         mccomas.add(new LatLng(37.22250313941424, -80.42021960020065));
-        ParkingLot mccomasLot = new ParkingLot(mccomas, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot mccomasLot = new ParkingLot(mccomas, Credential.Pass.COMMUTER, 8, 5 + 12,
                 "Coliseum Lot", "McComas Lot");
         lots.add(mccomasLot);
         //------------------
-//        List<LatLng> mccomas = new ArrayList<LatLng>();
-//        mccomas.add(new LatLng(37.221627447044945, -80.42147487401962));
-//        mccomas.add(new LatLng(37.22079019019925, -80.42148023843765));
-//        mccomas.add(new LatLng(37.22091834235965, -80.41969388723373));
-//        mccomas.add(new LatLng(37.22250313941424, -80.42021960020065));
-//        ParkingLot mccomasLot = new ParkingLot(mccomas, Credential.Pass.FACILITYSTAFF, 8, 5 + 12);
-//        lots.add(mccomasLot);
-
-
 
         List<LatLng> duckpond1 = new ArrayList<LatLng>();
         duckpond1.add(new LatLng(37.223212229200165, -80.42951613664627));
@@ -179,7 +170,7 @@ public class LotsModel {
         duckpond2.add(new LatLng(37.223272031648385, -80.43145000934601));
         duckpond2.add(new LatLng(37.22303282157107, -80.43094575405121));
         duckpond2.add(new LatLng(37.223955484831535, -80.43019473552704));
-        ParkingLot duckpond2Lot = new ParkingLot(duckpond2, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot duckpond2Lot = new ParkingLot(duckpond2, Credential.Pass.COMMUTER, 8, 5 + 12,
                 "Duck Pond Lot","Overflow Lot");
         lots.add(duckpond2Lot);
 
@@ -240,7 +231,7 @@ public class LotsModel {
         track.add(new LatLng(37.21737699087266, -80.41983872652054));
         track.add(new LatLng(37.21746670146699, -80.41950076818466));
         track.add(new LatLng(37.21824418881562, -80.4196348786354));
-        ParkingLot trackLot = new ParkingLot(track, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot trackLot = new ParkingLot(track, Credential.Pass.COMMUTER, 8, 5 + 12,
                 "Track/Field House Lot", "");
         lots.add(trackLot);          
 
@@ -289,7 +280,7 @@ public class LotsModel {
         drill.add(new LatLng(37.22684300616764, -80.42463719844818));
         drill.add(new LatLng(37.2260826932253, -80.42407929897308));
         drill.add(new LatLng(37.22596309273886, -80.42454063892365));
-        ParkingLot drillLot = new ParkingLot(drill, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot drillLot = new ParkingLot(drill, Credential.Pass.FACILITYSTAFF, 8, 8 + 12,
                 "Drill Field", "");
         lots.add(drillLot);
        
@@ -320,7 +311,7 @@ public class LotsModel {
         tennisCourt.add(new LatLng(37.21436948825939, -80.41813552379608));
         tennisCourt.add(new LatLng(37.21451473972052, -80.41760981082916));
         tennisCourt.add(new LatLng(37.21484796260409, -80.41779220104218));
-        ParkingLot tennisCourtLot = new ParkingLot(tennisCourt, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot tennisCourtLot = new ParkingLot(tennisCourt, Credential.Pass.ANY, 8, 5 + 12,
                 "Health and Safety Lot", "Tennis Court Lot");
         lots.add(tennisCourtLot);
 
@@ -348,7 +339,7 @@ public class LotsModel {
         squires.add(new LatLng(37.22862415872037, -80.41695803403854));
         squires.add(new LatLng(37.22915379788701, -80.41613727807999));
         squires.add(new LatLng(37.22967489085584, -80.41670590639114));
-        ParkingLot squiresLot = new ParkingLot(squires, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot squiresLot = new ParkingLot(squires, Credential.Pass.COMMUTER, 8, 5 + 12,
                 "Squires Lot", "");
         lots.add(squiresLot);
 
@@ -374,7 +365,7 @@ public class LotsModel {
                 "North End Center Garage", "");
         lots.add(northEndGarageLot);
 
-List<LatLng> bdubs = new ArrayList<LatLng>();
+        List<LatLng> bdubs = new ArrayList<LatLng>();
         bdubs.add(new LatLng(37.23360859943705, -80.4224619269371));
         bdubs.add(new LatLng(37.23332671183768, -80.4214158654213));
         bdubs.add(new LatLng(37.233822149946995, -80.42118519544601));
@@ -382,7 +373,7 @@ List<LatLng> bdubs = new ArrayList<LatLng>();
         bdubs.add(new LatLng(37.23424497817217, -80.42107790708542));
         bdubs.add(new LatLng(37.23434748162723, -80.42119055986404));
         bdubs.add(new LatLng(37.23393319597314, -80.42211323976517));
-        ParkingLot bdubsLot = new ParkingLot(bdubs, Credential.Pass.FACILITYSTAFF, 8, 5 + 12,
+        ParkingLot bdubsLot = new ParkingLot(bdubs, Credential.Pass.COMMERCIAL, 8, 5 + 12,
                 "Five Guys Lot", "");
         lots.add(bdubsLot);
 
@@ -404,6 +395,21 @@ List<LatLng> bdubs = new ArrayList<LatLng>();
     
     public ParkingLot closestLot(LatLng currLoc) {
         
+        double min_distance = -1.0;
+        ParkingLot closest = lots.get(0);
+        for (ParkingLot lot : lots){
+            double distance = calcDistance(lot.getCenter(), currLoc);
+            if (distance < min_distance) {
+                min_distance = distance;
+                closest = lot;
+            }
+        }
+        return closest;
+    }
+    
+    private double calcDistance(LatLng p1, LatLng p2) {
         
+        return Math.sqrt( Math.pow((p1.latitude - p2.latitude), 2) + 
+                Math.pow((p1.longitude - p2.longitude), 2) );      
     }
 }

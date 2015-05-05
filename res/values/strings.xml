@@ -6,5 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_map_acitivity">MapAcitivity</string>
     <string name="title_activity_pass_compare">PassCompareActivity</string>
+        <string name="dialog_message">Click Accept to have the parking Lot Closest to you highlighted</string>
+    <string name="dialog_accept">Accept</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_title">Highlight Closest Parking Lot</string>
 
 </resources>

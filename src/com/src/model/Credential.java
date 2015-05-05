@@ -17,7 +17,8 @@ public class Credential {
         CARPOOLFS,
         METERED,
         SERVICE,
-        ANY
+        ANY,
+        COMMERCIAL
     };
     private Pass cred;
     

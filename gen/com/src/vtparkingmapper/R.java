@@ -507,6 +507,7 @@ containing a value of this type.
         public static final int activity_login=0x7f030000;
         public static final int activity_map=0x7f030001;
         public static final int activity_pass_compare=0x7f030002;
+        public static final int dialog_name_pin=0x7f030003;
     }
     public static final class menu {
         public static final int login=0x7f0a0000;
@@ -622,6 +623,10 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
         public static final int decline=0x7f060003;
+        public static final int dialog_accept=0x7f060029;
+        public static final int dialog_cancel=0x7f06002a;
+        public static final int dialog_message=0x7f060028;
+        public static final int dialog_title=0x7f06002b;
         public static final int hello_world=0x7f060024;
         public static final int store_picture_message=0x7f060001;
         public static final int store_picture_title=0x7f060000;

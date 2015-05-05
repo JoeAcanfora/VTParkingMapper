@@ -59,11 +59,71 @@ public class ParkingLot {
         int currHour = c.get(Calendar.HOUR_OF_DAY);
         int day = c.get(Calendar.DAY_OF_WEEK);
         System.out.println("current hour:" + currHour);
+        
         for (Credential.Pass thisCred : cred) {
-            if (p.getCred() == thisCred || (currHour < startHour24 || currHour > endHour24 ) 
-                    || day == Calendar.SATURDAY || day == Calendar.SUNDAY) {
+            
+//            if ((currHour < startHour24 || currHour > endHour24 ) 
+//                    || day == Calendar.SATURDAY || day == Calendar.SUNDAY) {
+//                return true;
+//            }
+            if (p.getCred() == Credential.Pass.ANY || thisCred == Credential.Pass.METERED) {
                 return true;
             }
+            if (p.getCred() == Credential.Pass.BBW){
+                if (thisCred == Credential.Pass.CARPOOLCG || 
+                        thisCred == Credential.Pass.COMMUTER) {
+                    return true;
+                }
+            }
+            if (p.getCred() == Credential.Pass.CARPOOLCG) {
+                if(thisCred == Credential.Pass.CARPOOLCG 
+                        || thisCred == Credential.Pass.COMMUTER){
+                    return true;
+                }
+            }
+            if (p.getCred() == Credential.Pass.CARPOOLFS) {
+                if (thisCred != Credential.Pass.SERVICE 
+                        && thisCred != Credential.Pass.VISITOR
+                        && thisCred != Credential.Pass.CARPOOLCG) {
+                    return true;
+                }
+            }
+            if (p.getCred() == Credential.Pass.COMMERCIAL) {
+                return false;
+            }
+            if (p.getCred() == Credential.Pass.COMMUTER) {
+                if (thisCred == Credential.Pass.COMMUTER) {
+                    return true;
+                }
+            }
+            if (p.getCred() == Credential.Pass.FACILITYSTAFF) {
+                if (thisCred != Credential.Pass.SERVICE 
+                        && thisCred != Credential.Pass.VISITOR
+                        && thisCred != Credential.Pass.CARPOOLFS
+                        && thisCred != Credential.Pass.CARPOOLCG) {
+                    return true;
+                }
+            }
+            if (p.getCred() == Credential.Pass.GRADUATE) {
+                if (thisCred == Credential.Pass.COMMUTER) {
+                    return true;
+                }
+            }
+            if (p.getCred() == Credential.Pass.RESIDENT) {
+                if (thisCred == Credential.Pass.RESIDENT) {
+                    return true;
+                }
+            }
+            if (p.getCred() == Credential.Pass.VISITOR) {
+                //FS student visitor parking spaces
+                if (thisCred == Credential.Pass.FACILITYSTAFF
+                        || thisCred == Credential.Pass.VISITOR
+                        || thisCred == Credential.Pass.COMMUTER
+                        || thisCred == Credential.Pass.RESIDENT) {
+                    return true;
+                }
+            }
+            
         }
         return false;
     }
@@ -96,5 +156,14 @@ public class ParkingLot {
         double f_long = min_long + (max_long - min_long)/2;
         
         return new LatLng(f_lat, f_long);
+    }
+    
+    public boolean isMetered() {
+        for (Credential.Pass thisCred : cred) {
+            if (thisCred == Credential.Pass.METERED) {
+                return true;
+            }         
+        }
+        return false;
     }
 }
