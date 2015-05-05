@@ -115,8 +115,8 @@ public class MapAcitivity extends FragmentActivity implements ShakeDialog.Notice
             return true;
         }
         if (id == R.id.compare_passes){
-            Intent intent = new Intent(this, PassCompareActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, PassCompareActivity.class);
+//            startActivity(intent);
             return true;
         }
         System.out.println("Settings pressed");
