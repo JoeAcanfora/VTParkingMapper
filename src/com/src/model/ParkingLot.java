@@ -62,11 +62,11 @@ public class ParkingLot {
         
         for (Credential.Pass thisCred : cred) {
             
-//            if ((currHour < startHour24 || currHour > endHour24 ) 
-//                    || day == Calendar.SATURDAY || day == Calendar.SUNDAY) {
-//                return true;
-//            }
-            if (p.getCred() == Credential.Pass.ANY || thisCred == Credential.Pass.METERED) {
+            if ((currHour < startHour24 || currHour > endHour24 ) 
+                    || day == Calendar.SATURDAY || day == Calendar.SUNDAY) {
+                return true;
+            }
+            if (thisCred == Credential.Pass.ANY || thisCred == Credential.Pass.METERED) {
                 return true;
             }
             if (p.getCred() == Credential.Pass.BBW){
